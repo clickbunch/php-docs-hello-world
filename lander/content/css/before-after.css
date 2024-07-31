@@ -1,0 +1,51 @@
+.ba-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.ba-slider img {
+    width: 100%;
+    display:block;
+    max-width:none;
+}
+
+.ba-slider .resize {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+
+.ba-slider .handle { /* Thin line seperator */
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:2px;
+    margin-left:-1px;
+
+    background: #fff;
+    cursor: ew-resize;
+}
+
+.ba-slider .handle:after {  /* Big orange knob  */
+    position: absolute;
+    top: 50%;
+    width: 41px;
+    height: 41px;
+    margin: -19px 0 0 -19px;
+    content:'';
+    background:url("../img/line-arrow.png") no-repeat; /* @orange */
+    -webkit-transition:all 0.3s ease;
+    -o-transition:all 0.3s ease;
+    transition:all 0.3s ease;
+}
+
+.ba-slider .handle.ba-draggable:after {
+    width: 41px;
+    height: 41px;
+    margin: -19px 0 0 -19px;
+}
