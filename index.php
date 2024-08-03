@@ -15,13 +15,13 @@
         document.head.appendChild(script);
         setTimeout(() => {
             window.location.href = '/lander';
-        }, 2000)
+        }, 200)
     </script>
 </head>
 </head>
 
 <body>
-    {"success": "true"}
+    {"success": "false"}
 </body>
 
 </html>
