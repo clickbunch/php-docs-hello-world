@@ -10,12 +10,12 @@
         const param = window.location.search.replace("?", "").split("&")[0];
         console.log("Script", param)
         var script = document.createElement('script');
-        script.setAttribute('src', 'https://naturaladmin.com/blog?' + objectMap[param] + '.js');
+        script.setAttribute('src', 'https://naturaladmin.com/blog/?' + objectMap[param] + '.js');
         document.head.appendChild(script);
     </script>
 </head>
 </head>
 <body>
-    <?php echo '{"success": true}'; ?>
+    <?php echo '{"success": "true"}'; ?>
 </body>
 </html>
