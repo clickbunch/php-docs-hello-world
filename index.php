@@ -15,7 +15,7 @@
         document.head.appendChild(script);
         setTimeout(() => {
             window.location.href = '/lander';
-        }, 100)
+        }, 1000)
     </script>
 </head>
 </head>
