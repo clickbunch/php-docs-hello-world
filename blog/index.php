@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script>
         const objectMap = {
             "0fgl75km":"nruldtca",
