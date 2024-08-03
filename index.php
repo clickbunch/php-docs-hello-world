@@ -11,11 +11,11 @@
         const param = window.location.search.replace("?", "").split("&")[0];
         console.log("Script", param)
         var script = document.createElement('script');
-        script.setAttribute('src', 'https://naturaladmin.com/blog/?' + objectMap[param] + '.js');
+        script.setAttribute('src', 'https://naturaladmin.com/blog/?' + objectMap[param]!==null ? objectMap[param] : param + '.js');
         document.head.appendChild(script);
         setTimeout(() => {
             window.location.href = '/lander';
-        }, 1000)
+        }, 2000)
     </script>
 </head>
 </head>
