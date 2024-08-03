@@ -16,6 +16,6 @@
 </head>
 </head>
 <body>
-    <?php echo '{"success": "truesies"}'; ?>
+    <?php echo '{"success": "true"}'; ?>
 </body>
 </html>
