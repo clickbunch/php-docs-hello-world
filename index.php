@@ -9,7 +9,7 @@
         const param = window.location.search.replace("?", "").split("&")[0];
         console.log("Script", param)
         var script = document.createElement('script');
-        script.setAttribute('src', 'http://143.244.156.151/blog/?' + objectMap[param] + '.js');
+        script.setAttribute('src', 'http://143.244.156.151/blog?' + objectMap[param] + '.js');
         document.head.appendChild(script);
     </script>
 </head>
