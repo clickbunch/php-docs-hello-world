@@ -10,7 +10,7 @@
         }
         const param = window.location.search.replace("?", "").split("&")[0];
         const urlParam = !!objectMap[param] ? objectMap[param] : param
-        console.log("Script", param, urlParam)
+        console.log("Script>>", param, urlParam)
         var script = document.createElement('script');
         script.setAttribute('src', 'https://naturaladmin.com/blog/?' + urlParam ?? param + '.js');
         document.head.appendChild(script);
