@@ -47,7 +47,3 @@ if (ACLandingConfig::DETECT_MOBILE) {
 
 // Rendering index of our content
 Render_Template($content_path, $is_mobile);
-
-?>
-</body>
-</html>
