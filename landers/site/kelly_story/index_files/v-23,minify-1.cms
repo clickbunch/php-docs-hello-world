@@ -1,0 +1,566 @@
+
+            
+                objProfileCommon = {
+                    uuid: '',
+                    mobileNotVerify: '',
+                    objRegEx : {
+                        number: new RegExp(".*[0-9]"),
+                        alphabets: new RegExp(".*[a-z]"),
+                        name: new RegExp("^[a-zA-Z ]*$"),
+                        specialChar: new RegExp(".*[!@#$%^&*()]"),
+                        mobile: new RegExp("^[6-9]\\d{9}$"),
+                        email: new RegExp("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"),
+                        otp: new RegExp("^\\d{6}$")
+                    },
+                    setProfileStatus: function(profileCompleted) {
+                        if(window.location.href.indexOf("economictimes.com") != -1) objTopBanner.profile_completed=profileCompleted;
+                    },
+                    submitMobile: function(e) {
+                        if(e) {
+                            e.preventDefault();
+                        }
+                        var _valmobile = $('.jsMobileNo').val() || mobileChange.value;
+                        
+                        if (_valmobile !== '' && objProfileCommon.objRegEx.mobile.test(_valmobile) && _valmobile.length == 10) {
+                            objProfileCommon.mobileNotVerify = _valmobile;
+                            
+                            $('.pop-wraper .newLoading .loading').show();
+                            objUser.loadSsoApi(function () {
+                                var jsso = new JssoCrosswalk(objUser.channel, objUser.mode);
+                                jsso.v1AddUpdateMobile(_valmobile, objProfileCommon.submitMobileCallbak)
+                            });
+                        } else {
+                            alert('Please enter 10 digit Valid Mobile No.');
+                            $('.jsMobileNo').focus();
+                        }
+                    },
+                    submitMobileCallbak: function(res) {
+                        $('.pop-wraper .newLoading .loading').hide();
+                        if(res.status == "SUCCESS" && res.code == 200){
+                            $('.jsPopUpLayerSec').remove();
+                            $('.jsMobileNoOtp').val('');
+                            $('.otp_box').removeClass('hidden');
+                            objProfileCommon.uuid = res.data.uuid;
+                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OTP Popup Shown', 'event_label': ''}, 1);
+                        } else {
+                            // alert('Error message is '+ res.message);
+                            // $('.profileDetailsBox, .bgLayerProfile').remove();
+                        }
+                    },
+                    submitMobileOtp: function(e){
+                        if(e) {
+                            e.preventDefault();
+                        }
+
+                        var _mobiOtp = $('.jsMobileNoOtp').val();
+                        var _valmobile = $('.jsMobileNo').val() || mobileChange.value;
+                        if (_mobiOtp !== '' && objProfileCommon.objRegEx.otp.test(_mobiOtp) && _mobiOtp.length == 6) {
+                            $('.otp_err').text('');
+                            $('.jsMobileNoOtp').removeClass('err');
+                            $('.pop-wraper .newLoading .loading').show();
+
+                            objUser.loadSsoApi(function () {
+                                var jsso = new JssoCrosswalk(objUser.channel, objUser.mode);
+                                jsso.v1VerifyAlternateMobile(_valmobile, _mobiOtp, objProfileCommon.uuid, objProfileCommon.submitMobileOtpCallbak);
+                            });
+                        } else {
+                            $('.otp_err').text('Please enter correct OTP');
+                            $('.jsMobileNoOtp').addClass('err');
+                            $('.jsMobileNoOtp').focus();
+                        }
+                    },
+                    submitMobileOtpCallbak: function(res){
+                        if(res.status == "SUCCESS" && res.code == 200) {
+                            $('.otp_err').text('');
+                            $('.jsMobileNoOtp').removeClass('err');
+                            $('.otp_box, .profile_box').addClass('hidden');
+                            $('.success_box').removeClass('hidden');
+
+                            var obj = {
+                                "uuid": _tp_data.ssoid,
+                                "responses": [{
+                                    questionKey: 'mobile',
+                                    answer: mobileChange.value
+                                }],
+                                "paidUser": _tp_data.isPrime ? true : false
+                            }
+                            objProfileNew.saveHit(obj);
+                        } else if(res.status == "FAILURE") {
+                            $('.otp_err').text(objProfileCommon.errorMsgMapping(res.message))
+                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OTP Popup Error', 'event_label': res.message}, 1);
+                            $('.jsMobileNoOtp').addClass('err');
+                        }
+                    },
+                    errorMsgMapping: function(msg) {
+                        var errorMsg = "Invalid OTP, please try again";
+                        switch(msg) {
+                            case "WRONG_OTP": 
+                                errorMsg = "Please enter valid OTP";
+                                break;
+                            case "LIMIT_EXCEEDED":
+                                errorMsg = "Your OTP Limit Exceed, please try after some time";
+                                break;
+                            case "INVALID_MOBILE":
+                                errorMsg = "Please use valid Mobile Number";
+                                break;
+                            case "EXPIRED_OTP": 
+                                errorMsg = "OTP has been expired";
+                                break;
+                            default:
+                                errorMsg = "Invalid OTP, please try again";
+                                break;
+                        }
+                        return errorMsg;
+                    },
+                    resendOTP: function(type, value){
+                        $('.pop-wraper .newLoading .loading').show();
+                        var jsso = new JssoCrosswalk(objUser.channel, objUser.mode);
+                        objUser.loadSsoApi(function () {
+                            if(type == 'mobile'){
+                                var _valMob = value || $('.jsMobileNo').val() || mobileChange.value;
+                                jsso.v1AddUpdateMobile(value, objProfileCommon.resendOTPCallbak) 
+                            } else if(type == 'email'){
+                                jsso.v1AddUpdateEmail(value, objProfileCommon.resendOTPEmailCallbak)
+                            }
+                        });
+                    },
+                    resendOTPCallbak: function(res) {
+                        $('.pop-wraper .newLoading .loading').hide();
+                        if(res.status == "SUCCESS"){
+                            alert('We have sent a 6 digit code to your mobile '+ mobileChange.value);
+                        } else {
+                            // alert('some error message is  '+ res.message);
+                        }
+                    },
+                    resendOTPEmailCallbak: function(res) {
+                        $('.pop-wraper .newLoading .loading').hide();
+                        if(res.status == "SUCCESS"){
+                            alert('We have sent a 6 digit code to your email id  '+ objProfileCommon.emailNotVerify);
+                        }else{
+                            // alert('some error message is  '+ res.message);
+                        }
+                    },
+                    updateJSSOProfile: function(firstName){
+                        objUser.loadSsoApi(function () {
+                            var jsso = new JssoCrosswalk(objUser.channel, objUser.mode);
+                            jsso.updateUserProfile(firstName);
+                        });
+                    }
+                }
+
+                objProfileNew = {
+                    onboardingDomain: objCommon.isLive ? "etonboard" : "etonboard-stg",
+                    type: '',
+                    mobileData: {},
+                    init: function() {
+                        $('.dynamicForm').html('');
+                        var userProfileData = $.jStorage.get("profiledata");
+                        objProfileNew.type = $.jStorage.get('profile_update_shown_type') || ''; // either onetap or popup
+
+                        if(userProfileData) {
+                            var parseData = JSON.parse(userProfileData);
+                            objProfileNew.questionnaire = parseData.questionnaireDto && parseData.questionnaireDto.screens.length && parseData.questionnaireDto.screens[0].questions;
+                            objProfileNew.createOnd(objProfileNew.questionnaire);
+                        } else {
+                            objProfileNew.fetchQuestions();
+                        }
+                        
+                        $('.dynamicFormBox').removeClass('hidden');
+                    },
+                    fetchQuestions: function() {
+                        $.ajax({
+                            url: 'https://' + objProfileNew.onboardingDomain + '.economictimes.indiatimes.com/etonboard/api/v3/fetchQuestionnaire.json',
+                            dataType: 'json',
+                            data: {
+                                isPaidUser: _tp_data.isPrime ? true : false,
+                                email: _tp_data.email,
+                                isEdit: true
+                            },
+                            headers: {
+                                'Authorization': _tp_data.ssoid,
+                                'Content-Type':'application/json'
+                            },
+                            success: function(res){
+                                var profileObj = res.questionnaireDto && res.questionnaireDto.screens.filter(ele => ele.key === "screen1");
+                                var profileCompleted = profileObj && profileObj.length && profileObj[0].status.toLowerCase() === "complete";
+                                objProfileNew.questionnaire = res.questionnaireDto && res.questionnaireDto.screens.length && res.questionnaireDto.screens[0].questions;
+                                objProfileCommon.setProfileStatus(profileCompleted);
+                                if(!profileCompleted) {
+                                    $('.incomplete_badge').removeClass('hidden');
+                                    // var isElegible = !$('.prime_header').length && !_tp_data.isPrime;
+                                    // typeof objSpecialOffer !== "undefined" && isElegible && objSpecialOffer.init();
+                                }
+                                
+                                var userTid = objUser.info && objUser.info.ticketId;
+                                var userDetails = $.jStorage.get('prime_' + userTid);
+                                if(userDetails) {
+                                    userDetails['profileCompleted'] = profileCompleted;
+                                    $.jStorage.set('prime_' + userTid, userDetails);
+                                }
+                                
+                                var isPopupShown = $.jStorage.get('profile_update_shown');
+                                var isOneTapRef = objProfileNew.type === "onetap";
+                                var skipPopup = $('.skip_popup').length;
+                                var skipOptInPopup = $('.skipOptInPopup').length;
+                                var profilePopupEnabled = window.objVc.userprofilepopup_onoff === "1";
+                                
+                                if(objProfileNew.questionnaire.length) {
+                                    var urlParams = window.location.search || "";
+                                    if(tpName === "userprofile") {
+                                        objProfileNew.createOnd(objProfileNew.questionnaire);
+                                        objProfileNew.profilePicHandling();
+                                        grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Profile page visited', 'event_label': ''}, 1);
+                                    } else if(isOneTapRef && !skipPopup && !skipOptInPopup && !profileCompleted) {
+                                        if(profileCompleted) {
+                                            location.reload();
+                                        } else {
+                                            loadModule({'module_name': 'js_etsubscription_optin', v: "19", type:'popup', callback: function() {
+                                                objProfileNew.createPopup('onetap');
+                                            }});
+                                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OB Popup Shown', 'event_label': window.location.href}, 1);
+                                        }
+                                    } else if(!isPopupShown && !skipPopup && !skipOptInPopup && !profileCompleted && !_tp_data.isPrime && profilePopupEnabled) {
+                                        /* $.jStorage.deleteKey('profile_update_shown'); */
+                                        setTimeout(function() {
+                                            $.jStorage.set('profile_update_shown', 1, {TTL: objProfileNew.timeLeftForNextDay()});
+                                            objProfileNew.createPopup();
+                                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Popup Shown', 'event_label': window.location.href}, 1);
+                                        }, 20000)
+                                    }
+                                }
+                            }
+                        });
+                    },
+                    bindEvents: function() {
+                        /* Unbind - Because somehow called this function multiple times*/
+                        $('#occupation, .jsResendOtp, .saveData, .verify_btn, .back_lbl, .cross_dialog').unbind();
+                        
+                        $(".saveData").click(function() {
+            				objProfileNew.saveHit();
+            			});
+            			
+            			$(".dialog_closeicon, .cross_dialog").click(function() {
+            				if(objProfileNew.type === 'onetap') {
+            				    location.reload();
+            				    grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OB Popup Closed', 'event_label': window.location.href}, 1);
+            				} else {
+            				    $('body').removeClass('overlayFixPosition');
+            				    $('.bgLayerProfile, .profileDetailsBox').remove();
+                				grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Popup Closed', 'event_label': window.location.href}, 1);
+            				}
+            			});
+
+                        $('#occupation').on('change', function() {
+                        	var element = $(this).find('option:selected');
+                        	var selectedKey = element.attr("key");
+                        	$('.ChildEle').addClass('hidden');
+                        	$('.'+selectedKey).removeClass('hidden');
+                        });
+                        
+                        $(document).on('keyup', '.mobile, .jsMobileNoOtp', function(e){
+                          if (/\D/g.test(this.value)){
+                            this.value = this.value.replace(/\D/g, '');
+                          }
+                        });
+                        
+                        $(".verify_btn").click(function() {
+                            objProfileCommon.submitMobileOtp();
+                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OTP Popup Clicked', 'event_label': 'Verify'}, 1);
+                        });
+                        
+                        $(".jsResendOtp").click(function() {
+                            objProfileCommon.resendOTP('mobile', mobileChange.value);
+                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OTP Popup Clicked', 'event_label': 'Resend'}, 1);
+                        });
+                        
+                        $(".back_lbl").click(function() {
+                            $('.otp_box').addClass('hidden');
+                            $('.profile_box').removeClass('hidden');
+                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'OTP Popup Clicked', 'event_label': 'Back'}, 1);
+                        });
+                    },
+                    getFCUserName: function(name = "") {
+                        var savedName = $('div[data-ques="name"] input[type="text"]').val();
+                        var userName = name || savedName || _tp_data.fullName;
+                        if(userName) {
+                            return userName.split('')[0].toUpperCase();
+                        }
+                        return '';
+                    },
+                    profilePicHandling: function(name="") {
+                        var isDefaultPic = _tp_data.pic && (_tp_data.pic === "https://mytimes.indiatimes.com/image/profile/0/default" || _tp_data.pic.includes("/photo/57910642.cms"));
+                        if(_tp_data.pic && !isDefaultPic) {
+                            $('.profileImg, .jsUserDP').attr('src', _tp_data.pic).removeClass('hidden');
+                        } else {
+                            $('.username_profilepic').text(objProfileNew.getFCUserName(name)).removeClass('hidden');
+                        }
+                    },
+                    createPopup: function(type = '') {
+                        $.ajax({
+                            url:'/userprofile_popup.cms?type='+type,
+                            success: function (html) {
+                                if(type == "onetap") {
+                                    $('.pd_container').append(html);
+                                } else {
+                                    $('body').addClass('overlayFixPosition').append(html);
+                                }
+                                $('.jsUserName').html(_tp_data.fullName);
+                                objProfileNew.profilePicHandling();
+
+                                if(type == 'success') {
+                                    $('.profile_box, .otp_box').addClass('hidden');
+                                    $('.success_box').removeClass('hidden');
+                                    grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Thank you Popup Shown', 'event_label': ''}, 1);
+                                    setTimeout(function() {
+                                        $('body').removeClass('overlayFixPosition');
+                                        $('.profileDetailsBox, .bgLayerProfile').remove();
+                                        grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Thank you Popup Closed', 'event_label': ''}, 1);
+                                    }, 3000)
+                                } else if(type === "otp") {
+                                    $('.profile_box').addClass('hidden');
+                                    $('.jsMobileNoOtp').val('');
+                                    $('.otp_box').removeClass('hidden');
+                                    objProfileNew.bindEvents();
+                                    $('.jsMobileNo').val(mobileChange.value);
+                                    $('.userMobile').html(mobileChange.value);
+                                    objProfileCommon.submitMobile();
+                                } else {
+                                    objProfileNew.createOnd(objProfileNew.questionnaire);
+                                }
+                            }
+                        });
+                    },
+                    timeLeftForNextDay: function() {
+                        var ms = 0;
+                        try {
+                            var currentDate = new Date();
+                            var a = new Date();
+                            currentDate.addDays(4);
+                            var b  = new Date(currentDate.toDateString());
+                            ms = (b.getTime() - a.getTime());
+                        } catch (e) {}
+                        return ms;
+                    },
+                    scrnHtml: '',
+                    createOnd: function(questionsList, parentele = ''){
+                        $.each(questionsList, function(i, v){
+                            var type = questionsList[i].type;
+                            objProfileNew.checkType(questionsList[i], type, parentele);
+                            if(type === "DropDown") {
+                                objProfileNew.dropDownHanle(questionsList[i])
+                            }
+                        });
+                        
+                        $(".dynamicForm").html(objProfileNew.scrnHtml).promise().done(function(){
+                            var isDialogShown = $('.profileDetailsBox').length;
+                            if(isDialogShown) {
+                                $('div[data-ques="name"], div[data-ques="email"], div[data-ques="location"]').hide();
+                            }
+                            $('.ChildEle').addClass('hidden');
+                            if($("#occupation")[0]) {
+                                var selectedOccupation = $("#occupation")[0].selectedIndex;
+                                if(!selectedOccupation) {
+                                    $("#occupation")[0].selectedIndex = 1;
+                                }
+                            }
+                            var firstOption = $("#occupation").find('option:selected').attr("key");
+                            $('.'+firstOption).removeClass('hidden');
+                            $('input[type="text"].email').attr('disabled', 1);
+                            objProfileNew.bindEvents();
+                        });
+                    },
+                    dropDownHanle: function(ele) {
+                         $.each(ele.options, function(i, v){
+                            var questions = ele.options[i].questions;
+                            if(questions && questions.length) {
+                                objProfileNew.createOnd(questions, ele.options[i].key);
+                            }
+                        });
+                    },
+                    checkType: function(question, type, parentEle) {
+                        if(!question.deprecated) {
+                            switch(type){
+                                case "Text":
+                                    objProfileNew.scrnHtml += objProfileNew.textScrn(question, parentEle);
+                                    break;
+                                case "DropDown":
+                                    objProfileNew.scrnHtml += objProfileNew.dropDownScrn(question, parentEle);
+                                    break;
+                            }
+                        }
+                    },
+                    textScrn: function(data, parentClass = '') {
+                        if(data.key === 'mobile') {
+                            objProfileNew.mobileData.currMobile = data.answer || _tp_data.mobile || typeof(objUserProfile) !== "undefined" && objUserProfile.userDetails.mobileNo || '';
+                        }
+                        
+                        var answer = data.key === 'email' ? (data.answer || _tp_data.email || (typeof(objUserProfile) !== "undefined" && objUserProfile.userDetails.email || '')) : data.key === 'name' ? 
+                            (data.answer || _tp_data.fullName) : data.key === 'mobile' ? objProfileNew.mobileData.currMobile : data.key === 'location' ? (data.answer || window.geoinfo.city) : (data.answer || '');
+                        var parentEleClass = parentClass ? (parentClass + ' form-label survey_scrn ChildEle ' + data.key) : 'form-label survey_scrn';
+            
+                        return  '<div data-scrn="text_type" class="'+ parentEleClass +'" data-ques="'+data.key+'">\
+                            <span class="input_label">'+(data.name || data.key)+'</span>\
+                            <input type="text" name="'+data.key+'" id="name" maxlength="'+(data.key === "mobile" ? 10 : 40)+'" class="tac '+data.key+'" value="'+ answer +'" placeholder="'+data.question+'" required="" />\
+                        </div>';
+                    },
+                    dropDownScrn: function(data, parentClass = '') {
+                        var optionArr = data.options,
+                        ddHtml = '',
+                        optionHtml = '<option selected disabled value="">'+data.question+'</option>';
+                            
+                        $.each(optionArr, function(i, v){
+                            selectVal = optionArr[i].selected ? 'selected' : '';
+                            optionHtml += '<option '+ selectVal +' key="'+ optionArr[i].key +'" value="'+ optionArr[i].value +'">'+ optionArr[i].value +'</option>';
+                        });
+                        
+                        ddHtml += '<div class="selectBox">\
+                            <select id="'+ data.key +'" name="'+ data.key +'">'+ optionHtml +'</select>\
+                        </div>';
+                        
+                        var parentEleClass = parentClass ? (parentClass + ' form-label survey_scrn ChildEle ' + data.key) : 'form-label survey_scrn';
+                        
+                        return  '<div data-scrn="dd_type" class="'+parentEleClass+'" data-ques="'+ data.key +'" >\
+                            <span class="input_label">'+data.name+'</span>\
+                            <div class="inputBox">'+ ddHtml +'</div>\
+                        </div>';
+                    },
+                    refType: function() {
+                        return tpName === "userprofile" ? 'Profile Page' : objProfileNew.type === 'onetap' ? 'Onetap Popup Filled' : 'Popup Filled';
+                    },
+                    createRes: function(){
+                        var visScrn = $(".dynamicForm div[data-scrn]"),
+                        scrnObj = [],
+                        mobileChange = {};
+                        
+                        visScrn.find("input[type='text']").each(function(i, v) {
+                            var keyName = $(this).attr("name");
+                            if($(this).val()) {
+                                if(keyName !== 'mobile' || (keyName === 'mobile' && objProfileNew.mobileData.currMobile == $(this).val())) {
+                                    scrnObj.push({
+                                        questionKey: keyName,
+                                        answer: $(this).val()
+                                    })
+                                } else if(keyName === 'mobile') {
+                                    objProfileNew.mobileData.newMobile = $(this).val();
+                                    mobileChange = {changed: true, value: $(this).val()};
+                                }
+                                grxEvent('event', {'event_category': 'User Profile', 'event_action': objProfileNew.refType() + ' - ' + keyName , 'event_label': ''}, 1);
+                            }
+                        });
+                        
+                        visScrn.find("select").each(function(){
+                            var ansArr = [];
+                            $(this).find("option").each(function(i, v){
+                                if($(this).is(":selected") && $(this).attr("key")){
+                                    ansArr.push({
+                                        "name": $(this).attr("value"),
+                                        "key": $(this).attr("key"),
+                                        "value": $(this).attr("value"),
+                                        "selected": $(this).is(":selected")
+                                    });    
+                                } 
+                            });
+                            if(ansArr && ansArr.length) {
+                                scrnObj.push({
+                                    questionKey: $(this).attr("name"),
+                                    answers: ansArr
+                                });
+                                grxEvent('event', {'event_category': 'User Profile', 'event_action': objProfileNew.refType() + ' - ' + $(this).attr("name") , 'event_label': ''}, 1);
+                            }
+                        });
+                        
+                        return {
+                            "uuid": _tp_data.ssoid,
+                            "responses": scrnObj,
+                            "paidUser": _tp_data.isPrime ? true : false,
+                            mobileChange: mobileChange
+                        }
+                    },
+                    saveHit: function(dataObj) {
+                        var jsonReq;
+                        if(!dataObj) {
+                            var finalObj =  objProfileNew.createRes(); 
+                            var _mobileChange = JSON.parse(JSON.stringify(finalObj));
+                            mobileChange = _mobileChange.mobileChange;
+                            delete finalObj.mobileChange;
+                            jsonReq = JSON.stringify(finalObj);
+                            
+                            if(mobileChange.changed && (!objProfileCommon.objRegEx.mobile.test(mobileChange.value) || mobileChange.value.length !== 10)) {
+                                alert('Please enter 10 digit Valid Mobile No.');
+                                return false;
+                            }
+                        } else {
+                            mobileChange = {};
+                            jsonReq = JSON.stringify(dataObj);
+                        }
+                        
+                        $('.jsLoadingSec .loading-sec').show();
+                        
+                        $.ajax({
+                            url: "https://"+ objProfileNew.onboardingDomain +".economictimes.indiatimes.com/etonboard/api/v1/saveUserResponse.json",
+                            headers: {'Content-Type':'application/json'},
+                            dataType: 'json',
+                            data: jsonReq,
+                            method:'POST',
+                            success: function(res) {
+                                $('.jsLoadingSec .loading-sec').hide();
+                                var currMobile = _tp_data.mobile.replace('+91-', '');
+                                if(mobileChange.changed && currMobile !== mobileChange.value) {
+                                    $('.profile_box').toggleClass('hidden');
+                                    if(tpName === "userprofile") {
+                                        // objUserProfile.showMobileUpdate('mobileupdate');
+                                        objProfileNew.createPopup('otp');
+                                    } else {
+                                        objProfileCommon.submitMobile();
+                                    }
+                                    setTimeout(function() {
+                                        $('.jsMobileNo').val(mobileChange.value);
+                                        $('.userMobile').html(mobileChange.value);
+                                        $('.mobileUpdate form').submit()
+                                    }, 300);
+                                    grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Popup Completed', 'event_label': 'CTA Clicked - ' + window.location.href}, 1);
+                                } else {
+                                    if(objProfileNew.type === "onetap") {
+                                        location.reload();
+                                    } else if(tpName === "userprofile") {
+                                        objProfileNew.createPopup('success');
+                                    } else {
+                                        grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Popup Completed', 'event_label': 'CTA Clicked - ' + window.location.href}, 1);
+                                        $('.profile_box, .otp_box').addClass('hidden');
+                                        $('.success_box').removeClass('hidden');
+                                        grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Thank you Popup Shown', 'event_label': ''}, 1);
+                                        setTimeout(function() {
+                                            $('body').removeClass('overlayFixPosition');
+                                            $('.profileDetailsBox, .bgLayerProfile').remove();
+                                            grxEvent('event', {'event_category': 'User Profile', 'event_action': 'Thank you Popup Closed', 'event_label': ''}, 1);
+                                            mobileChange = {};
+                                        }, 3000)
+                                    }
+                                }
+                                
+                                var isNameChanged = finalObj && finalObj.responses && finalObj.responses.filter(ele => ele?.questionKey === "name");
+                                if(isNameChanged && isNameChanged.length) {
+                                    $('.jsUserName').html(isNameChanged[0].answer);
+                                    _tp_data.fullName = isNameChanged[0].answer;
+                                    var currInfo = $.jStorage.get('userInfo');
+                                    currInfo.fullName =  _tp_data.fullName.split(' ')[0];
+                                    $.jStorage.set('userInfo', currInfo);
+                                    objProfileCommon.updateJSSOProfile(isNameChanged[0].answer);
+                                    objProfileNew.profilePicHandling(isNameChanged[0].answer);
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                $(document).ready(function () {
+                    objUser.afterPrimeCheckCall(function() {
+                        if(_tp_data.email) {
+                            objProfileNew.init();
+                        } else {
+                            objProfileCommon.setProfileStatus(false);
+                        }
+                    });
+                });
+	        
+        
