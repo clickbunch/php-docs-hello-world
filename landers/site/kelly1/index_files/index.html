@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://www.dotdashmeredith.com/privateAggregationAPI/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible">
+        <meta name="description" content="embedded page to aggregate taxonomy pairs using the Private Aggregation API">
+        <title>tax2Tracker</title>
+    </head>
+
+    <body>
+        <script>
+            //get tax2 from message sent by parent iframe
+            window.addEventListener('message', async event => {
+                const tax2Object = event?.data;
+                // because there window events from many different sources, we must filter against an allowlist
+                const verticalAllowList = [
+                    "aboutespanol.com",
+                    "allrecipes.com",
+                    "allpeoplequilt.com",
+                    "agriculture.com",
+                    "bhg.com",
+                    "brides.com",
+                    "byrdie.com",
+                    "dailypaws.com",
+                    "eatingwell.com",
+                    "ew.com",
+                    "foodandwine.com",
+                    "health.com",
+                    "instyle.com",
+                    "investopedia.com",
+                    "learnreligions.com",
+                    "lifewire.com",
+                    "liquor.com",
+                    "liveabout.com",
+                    "marthastewart.com",
+                    "midwestliving.com",
+                    "myrecipes.com",
+                    "mydomaine.com",
+                    "parents.com",
+                    "people.com",
+                    "peopleenespanol.com",
+                    "realsimple.com",
+                    "seriouseats.com",
+                    "shape.com",
+                    "simplyrecipes.com",
+                    "southernliving.com",
+                    "thebalancemoney.com",
+                    "thespruce.com",
+                    "thesprucecrafts.com",
+                    "thespruceeats.com",
+                    "thesprucepets.com",
+                    "thoughtco.com",
+                    "travelandleisure.com",
+                    "treehugger.com",
+                    "tripsavvy.com",
+                    "verywellfamily.com",
+                    "verywellfit.com",
+                    "verywellhealth.com",
+                    "verywellmind.com",
+                    "woodmagazine.com",
+                    //for mm-ads module local testing
+                    "local.about.com"
+                ];
+
+                let i=0;
+                let messageFromVertical = false;
+                const verticalCount = verticalAllowList.length;
+
+                while (i < verticalCount) {
+                    if ( event.origin.includes(verticalAllowList[i]) ) {
+                        messageFromVertical = true;
+                        break;
+                    }
+                    i++;
+                }
+
+                if (messageFromVertical && tax2Object?.tax2?.length) {
+                    await window.sharedStorage.worklet.addModule("worklet.js");
+                    await window.sharedStorage.run("send-aggregatable-report", {
+                        data: tax2Object,
+                        privateAggregationConfig: { aggregationCoordinatorOrigin: "https://publickeyservice.msmt.gcp.privacysandboxservices.com" },
+                    });
+                }
+
+            });
+            parent.postMessage('success', '*');
+        </script>
+    
+</body></html>
