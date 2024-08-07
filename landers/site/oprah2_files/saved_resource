@@ -1,0 +1,44 @@
+
+var ftGUID_7808818="6030B1B774DB92";
+var ftConfID_7808818="34773848";
+var ftParams_7808818="ftscw=ebuy%3D31084775%3Besid%3D6522286%3Bepid%3D394032188%3Becid%3D204590285%3Beadv%3D4053494%3Beaid%3D585705776%3Berid%3D204399553%3Beexpid%3DP2R4C3P%3Beexcid%3D%3Berv%3D1%3Beiid%3DCPDQ_YTe4YcDFaDz9QIdIBws2A%3B&ft_custom=4053494__31084775__6522286__204590285&ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fwww.eatingwell.com%2Farticle%2F8010682%2Foprahs-image-fraudulently-used-for-weight-loss-gummies%2F&us_privacy=${US_PRIVACY}&cachebuster=511994.0825254743&ft_keyword=%7C%7C394032188&ft_section=%7C%7C394032188&ft_c1=394032188";
+var ftKeyword_7808818="394032188";
+var ftCustom_7808818="4053494__31084775__6522286__204590285";
+var ftSection_7808818="||394032188";
+var ftSegment_7808818="amuj";
+var ftSegmentList_7808818=[{s:'amuj'}];
+var ftRuleMatch_7808818="00011000";
+var ftTimestamp_7808818="1722994363";
+var ftGeoC2_7808818="us";
+var ftGeoState_7808818="il";
+var ftGeoCity_7808818="chicago";
+var ftISP_7808818="webpass inc.";
+var ftSpeed_7808818="broadband";
+var ftConnType_7808818="wifi";
+var ftDMA_7808818="602";
+var ftLong_7808818="-87.65";
+var ftLat_7808818="41.88";
+var ftPostal_7808818="60607";
+var ftTimeZone_7808818="-500";
+var ftMobileCarrier_7808818="";
+var ftImp7808818 = {};
+ftImp7808818.privacy = "x";
+ftImp7808818.guidAge = "33";
+ftImp7808818.impID = "0CE81043-F0D4-0D8E-B6F7-C491BBB2ABF7";
+ftImp7808818.duid = "FT:6030B1B774DB92";
+
+ftImp7808818.ft_tpplid = "";
+ftImp7808818.ft_c = {};
+ftImp7808818.ft_c.ft_c1 = "394032188";
+ftImp7808818.gdpr = "";
+ftImp7808818.gdpr_consent = "";
+ftImp7808818.gdpr_pd = "";
+ftImp7808818.oob_consent = "";
+ftImp7808818.gdprStoredConsent = "";
+ftImp7808818.us_privacy = "!!US_PRIVACY!";
+ftImp7808818.gpc = "0";
+
+ftImp7808818.jsAppend = "1";
+var ftCreativeId_7808818 = "4791006";
+(function(){var tag=document.getElementById("ft_servedby_7808818")||function(s){return s[s.length-1]}(document.getElementsByTagName("script")),js=document.createElement("script");js.src="https://ajs-assets.ftstatic.com/ftUtils.js";js.id="ftscript_m7808818";js.setAttribute("name","ftscript_m7808818");tag.parentNode.insertBefore(js,tag)})();window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("7808818");
+

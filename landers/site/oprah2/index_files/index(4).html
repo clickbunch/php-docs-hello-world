@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://cdn.flashtalking.com/188939/4712310/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style></style><meta name="ad.size" content="width=300,height=250">
+<script type="text/javascript"> 
+	var clickTag = "https://xfinity.com/";
+</script> 
+<script src="./gsap_3.5.1_min.js"></script> 
+<script src="./jquery.min.js"></script> 
+<script src="./SplitText.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<style rel="stylesheet" type="text/css">
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: -webkit-optimize-contrast;
+}
+body, body * {
+    vertical-align: baseline;
+    border: 0 none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+}
+#container {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    border: 1px solid #aaaaaa;
+    overflow: hidden;
+    opacity: 1;
+    box-sizing: border-box;
+    visibility: hidden;
+}
+div {
+    position: absolute;
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+img {
+    position: absolute;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1.0, 1.0);
+}
+#bg {
+    background: #6038f5;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.copy {
+    font-size: 23px;
+    line-height: 25px;
+    opacity: 1;
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    text-align: left;
+    width: 100%;
+    letter-spacing: -0.8px;
+    display: block;
+    color: #fff;
+}
+.copyHolder {
+    display: table;
+    top: 14px;
+    left: 18px;
+    height: 190px;
+    width: 260px;
+    opacity: 1;
+    overflow: hidden;
+}
+#frame4Copy{
+    font-size: 21px;
+    line-height: 23px;
+}
+#legal{
+    font-size: 7px;
+    line-height: 1.2em;
+    top: 8px;
+    letter-spacing: -.1px;
+}
+sup{
+    font-size: 8px;
+	vertical-align: text-top;
+}
+#badge > span{
+	position: relative;
+	top: 2px;
+}
+#endmsg {
+    font-size: 16px;
+    line-height: 16px;
+    top: 15px;
+}
+#frame1Copy div, #frame2Copy div, #frame3Copy div, #frame4Copy div {
+    opacity: 1;
+}
+#frame1Copy > div, #frame2Copy > div, #frame3Copy > div, #frame4Copy > div {
+    overflow: hidden;
+}
+.asset {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.asset img {
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+#end {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: #6038f5;
+}
+#logo {
+    width: 101px;
+    height: 35px;
+    right: 22px;
+    bottom: 15px;
+    opacity: 1;
+    position: absolute;
+}
+#cta {
+    background: #fff;
+    color: #000;
+    border-radius: 6px;
+    left: 18px;
+    bottom: 16px;
+    opacity: 1;
+    padding: 8px 10px;
+}
+#ctaCopy {
+    color: #000;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    padding: 0 0px;
+    white-space: nowrap;
+    letter-spacing: .2px;
+}
+#cta:after {
+    border-radius: 6px;
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+#cta:hover:after {
+    width: 120%;
+    background-color: rgba(0,0,0,0);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+#cta:hover:after {
+    width: 120%;
+    background-color: rgba(0,0,0,0);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+] #clickarea {
+cursor: pointer;
+height: 100%;
+width: 100%;
+z-index: 10;
+}
+#clicker {
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+</head>
+<body class="animate">
+<div id="container" style="cursor: pointer; visibility: visible;">
+  <div id="bg"></div>
+  <ft-dynamic name="image1" class="asset" id="image1"><img src="./dearam24_photo1_300x250.jpg"></ft-dynamic>
+  <ft-dynamic name="image2" class="asset" id="image2"><img src="./dearam24_photo2_300x250.jpg"></ft-dynamic>
+  <ft-dynamic name="image3" class="asset" id="image3"><img src="./dearam24_photo3_300x250.jpg"></ft-dynamic>
+  <ft-dynamic name="image4" class="asset" id="image4"><img src="./dearam24_photo4_300x250.jpg"></ft-dynamic>
+   <ft-dynamic name="endmask" class="asset" id="endmask"><img src="./dearam24_endmask_300x250.png"></ft-dynamic>
+  <div class="copyHolder" id="frame1CopyHolder">
+    <ft-dynamic name="frame1Copy" id="frame1Copy" class="xsb copy" style=""><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word1">The</div> <div style="position:relative;display:inline-block;" class="word word2">ACP</div></div><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word3">has</div> <div style="position:relative;display:inline-block;" class="word word4">ended</div></div></ft-dynamic>
+  </div>
+  <div class="copyHolder" id="frame2CopyHolder">
+    <ft-dynamic name="frame2Copy" id="frame2Copy" class="xsb copy" style=""><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word1">But</div> <div style="position:relative;display:inline-block;" class="word word2">Xfinity</div> <div style="position:relative;display:inline-block;" class="word word3">has</div></div><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word4">your</div> <div style="position:relative;display:inline-block;" class="word word5">back</div></div></ft-dynamic>
+  </div>
+  <div class="copyHolder" id="frame3CopyHolder">
+    <ft-dynamic name="frame3Copy" id="frame3Copy" class="xsb copy" style=""><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word1">Connect</div> <div style="position:relative;display:inline-block;" class="word word2">with</div></div><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word3">confidence</div></div></ft-dynamic>
+  </div>
+  <div class="copyHolder" id="frame4CopyHolder">
+    <ft-dynamic name="frame4Copy" id="frame4Copy" class="xsb copy" style=""><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word1">Switch</div> <div style="position:relative;display:inline-block;" class="word word2">to</div></div><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word3">Xfinity</div></div><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word4">starting</div> <div style="position:relative;display:inline-block;" class="word word5">at</div></div><div style="display: block; text-align: left; position: relative;"><div style="position:relative;display:inline-block;" class="word word6">$9.95/mo</div></div></ft-dynamic>
+    <ft-dynamic name="legal" id="legal" class="xsn copy">Restrictions apply. Not available in all<br>areas. Limited to Internet Essentials ("IE")<br>meeting certain eligibility criteria. Subject<br>to IE program terms and conditions.<br>May not be combined with other offers.</ft-dynamic>
+  </div>
+  <ft-dynamic name="logo" id="logo"><img src="./ie_logo.svg"></ft-dynamic>
+  <div id="cta">
+    <ft-dynamic name="ctaCopy" id="ctaCopy" class="xsb">Learn more</ft-dynamic>
+  </div>
+</div>
+<script>
+	
+    // Function to preload dynamic images 
+    function preloadDynamicVarImages() {
+        var _loadedImages=0;
+        //Preload all dynamic images 
+        var iavars = myFT.manifestProperties.instantAds;
+        var dImgArr = [];
+        for (var i = 0; i < iavars.length; i++) {
+            if (iavars[i].type == "image"){            
+                dImgArr.push(iavars[i].name);
+            } 
+        };    
+        for (var l = 0; l < dImgArr.length; l++) {
+            this["dimg" + l] = new Image();
+            this["dimg" + l].addEventListener('load', function() {
+                _loadedImages++;
+                if (_loadedImages == dImgArr.length) startAd();
+            });
+            this["dimg" + l].src = myFT.instantAds[dImgArr[l]];
+        }
+    };
+	
+	function startAd() {
+		
+		/* ------ FT Product ------*/
+		myFT.on("load", function() {
+			if ((myFT.instantAds.offerPrice_reporting.trim() !== "") && ( myFT.instantAds.cta_reporting.trim() !== "") && (myFT.instantAds.offer_reporting.trim() !== "")) {
+			fireReportingEvent();
+			}
+		});
+		/* ------ /FT Product ------*/
+
+		
+		var tl = gsap.timeline(), 
+    	frame1Text = new SplitText("#frame1Copy", {type:"lines, words", wordsClass:"word word++"}), 
+    	frame1Words = frame1Text.words,
+		frame2Text = new SplitText("#frame2Copy", {type:"lines, words", wordsClass:"word word++"}), 
+    	frame2Words = frame2Text.words,
+		frame3Text = new SplitText("#frame3Copy", {type:"lines, words", wordsClass:"word word++"}), 
+    	frame3Words = frame3Text.words,
+		frame4Text = new SplitText("#frame4Copy", {type:"lines, words", wordsClass:"word word++"}), 
+    	frame4Words = frame4Text.words; 
+
+		tl.to(container,0,{visibility:'visible'})
+		
+		//gsap.set("#frame3Copy div:nth-child(3) div:nth-child(3)",{fontSize: 16});
+		
+		// Frame 1
+		tl.from(image1, .5, {opacity:0, scale:1.1, ease:"Power2.easeOut"}, "+=0");
+		tl.from(frame1Words, .25, {y:40, ease:"Power2.easeOut", stagger: 0.03}, "-=.25");
+		
+		// Frame 2
+		tl.to(frame1Words, .25, {y:-40, ease:"Power2.easeOut", stagger: 0.03}, "+=3.5");
+		tl.from(image2, .5, {opacity:0, scale:1.1, ease:"Power2.easeOut"}, "-=.25");
+		tl.from(frame2Words, .25, {y:40, ease:"Power2.easeOut", stagger: 0.03}, "-=.25");
+		
+		// Frame 3
+		tl.to(frame2Words, .25, {y:-40, ease:"Power2.easeOut", stagger: 0.03}, "+=3.5");
+		tl.from(image3, .5, {opacity:0, scale:1.1, ease:"Power2.easeOut"}, "-=.25");
+		tl.from(frame3Words, .25, {y:40, ease:"Power2.easeOut", stagger: 0.03}, "-=.25");
+        
+        // Frame 4
+		tl.to(frame3Words, .25, {y:-40, ease:"Power2.easeOut", stagger: 0.03}, "+=3.5");
+        tl.from(image4, .5, {opacity:0, scale:1.1, ease:"Power2.easeOut"}, "-=.25");
+        tl.from(endmask, .5, {opacity:0, x:"-=100", ease:"Power2.easeOut"}, "-=.25");
+        tl.from(cta, .25, {backgroundColor: "#5a23b9", color: "#ffffff", ease:"Power2.easeOut"}, "-=.5");
+        tl.from(ctaCopy, .25, {color: "#ffffff", ease:"Power2.easeOut"}, "-=.25");
+        tl.from(logo, .25, {opacity:0, ease:"Power2.easeOut"}, "-=.25");
+		tl.from(frame4Words, .25, {y:40, ease:"Power2.easeOut", stagger: 0.03}, "-=.25");
+		tl.from(legal, .25, {opacity:0, ease:"Power2.easeOut"}, "+=0");
+		
+	};
+</script> 
+<script src="./html5API.js"></script> 
+<script src="./Tracker.js"></script> 
+<script>
+		function fireReportingEvent() {
+		let reportingDimensions = [
+		myFT.instantAds.offerPrice_reporting,
+		myFT.instantAds.cta_reporting,
+		myFT.instantAds.offer_reporting,
+		];
+		let trimmedReportingDimensions = reportingDimensions.map((s) => s.trim());
+		let validReportingDimension = trimmedReportingDimensions.every(
+		(s) => s.length > 0
+		);
+		let reportingLabel = trimmedReportingDimensions.join("_");
+		if (validReportingDimension) {
+		Tracker.impressionTrackEvent(reportingLabel);
+		}
+		// For QA and Dev
+		if (document.referrer.includes("creativepreview.flashtalking.net")) {
+		console.log(reportingLabel);
+		console.table({"FT_product": {"Offer Price": reportingDimensions[0], "CTA": reportingDimensions[1], "Offer Type": reportingDimensions[2]}})
+		}
+		}
+	
+        if(myFT.$('#container').length > 0){ 
+			var container = myFT.$('#container')
+			} 
+		myFT.applyClickTag(container,1);
+</script> 
+<script>
+	//1), using FT api, check that the DOMLoaded event has fired
+	myFT.on('DOMLoaded', function() {
+		//2) listen for instantAds event is dispatched
+		myFT.on("instantads", function(){
+				//3) preload dynamic images
+				preloadDynamicVarImages();
+		});
+	});
+</script>
+
+</body></html>
