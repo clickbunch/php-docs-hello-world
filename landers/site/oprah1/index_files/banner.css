@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+body, body * {
+	vertical-align: baseline;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#container {
+	position:absolute;
+	width:320px;
+	height:50px;
+	top:0;
+	left:0;
+	overflow:hidden;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	z-index:20;
+	border: 1px solid #333333;
+}
+
+#content {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background-color:#ffffff;
+	z-index: 1;
+}
+
+#exitBtn {
+	position:absolute;
+	width:320px;
+	height:50px;
+	top:0;
+	left:0;
+    background-color: rgba(0,0,0,0);
+	cursor: pointer;
+}
+
+/*Isi Styles*/
+#isi_text_area {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 69px;
+	height: 41px;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:6px;
+	line-height:8px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	color: #ffffff;
+	padding-right: 5px;
+	overflow-y: scroll;
+	scrollbar-color: #000000 transparent;
+	scrollbar-width: thin;
+}
+
+#isi_text_area sup {
+	position: relative;
+	font-size: 6px;
+	top: -2px;
+}
+#isi_text_area p {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+#isi_text_area .isi_item {
+	margin-top: 10px;
+}
+#isi_text_area strong {
+	color: #75c4d6;
+}
+#isi_text_area a {
+	color: #75c4d6;
+}
+#isi_text_area::-webkit-scrollbar {
+	width: 5px;
+}
+#isi_text_area::-webkit-scrollbar-track {
+	background: rgba(255,255,255,0.1);
+}
+#isi_text_area::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: rgba(255,255,255,0.5);
+}
+
+
+
+#f1_image1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 320px;
+	height: 50px;
+}
+
+#f1_logo {
+	position: absolute;
+	top: 5px;
+	left: 22px;
+	width: 118px;
+	height: 38px;
+}
+
+#cta_container1 {
+	position: absolute;
+	top: 21px;
+	left: 162px;
+	width: 68px;
+	height: 14px;
+}
+
+#cta_text1 {
+	position: absolute;
+	top: 25px;
+	left: 174px;
+	width: 45px;
+	height: 5px;
+}
+
+#logo {
+	position: absolute;
+	top: 5px;
+	left: 164px;
+	width: 65px;
+	height: 21px;
+}
+
+#disclaimer {
+	position: absolute;
+	top: 37px;
+	left: 34px;
+	width: 84px;
+	height: 9px;
+}
+
+#f2_text1 {
+	position: absolute;
+	top: 5px;
+	left: 34px;
+	width: 84px;
+	height: 15px;
+}
+
+#f2_text2 {
+	position: absolute;
+	top: 21px;
+	left: 34px;
+	width: 84px;
+	height: 13px;
+}
+
+#f3_text1 {
+	position: absolute;
+	top: 6px;
+	left: 34px;
+	width: 85px;
+	height: 10px;
+}
+
+#f3_text2 {
+	position: absolute;
+	top: 20px;
+	left: 34px;
+	width: 84px;
+	height: 26px;
+}
+
+#isi_text_container {
+	position: absolute;
+	top: 5px;
+	left: 243px;
+	width: 69px;
+	height: 45px;
+}
+
+#logo {
+	position: absolute;
+	top: 5px;
+	left: 164px;
+	width: 65px;
+	height: 21px;
+}
+
+#cta_container3 {
+	position: absolute;
+	top: 21px;
+	left: 162px;
+	width: 68px;
+	height: 14px;
+}
+
+#cta_text3 {
+	position: absolute;
+	top: 25px;
+	left: 174px;
+	width: 45px;
+	height: 5px;
+}
+
+
+
+/*Version: Mon Sep 04 2023 14:27:46 GMT-0300. Environment: ubro. Type: batd*/
