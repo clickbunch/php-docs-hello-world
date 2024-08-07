@@ -1,0 +1,44 @@
+
+var ftGUID_7808821="6030B1B774DB92";
+var ftConfID_7808821="33364044";
+var ftParams_7808821="ftscw=ebuy%3D31084775%3Besid%3D6522286%3Bepid%3D394031429%3Becid%3D205083015%3Beadv%3D4053494%3Beaid%3D585765319%3Berid%3D204532920%3Beexpid%3DP2R4C5J%3Beexcid%3D%3Berv%3D1%3Beiid%3DCLvW1Pzs4YcDFSjWTwIdvXA7kA%3B&ft_custom=4053494__31084775__6522286__205083015&ftOBA=1&ft_domain=www.tmj4.com&ft_ifb=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fwww.tmj4.com%2Fnews%2Fmilwaukee-county%2Foprah-visits-milwaukee-public-market-during-rnc&gdpr=0&us_privacy=${US_PRIVACY}&cachebuster=522560.4312712235&ft_keyword=%7C%7C394031429;394031429&ft_section=04258255323513014773397926899830101527%7C%7C394031429&ft_c1=394031429";
+var ftKeyword_7808821="394031429";
+var ftCustom_7808821="4053494__31084775__6522286__205083015";
+var ftSection_7808821="04258255323513014773397926899830101527||394031429";
+var ftSegment_7808821="amuj";
+var ftSegmentList_7808821=[{s:'amuj'}];
+var ftRuleMatch_7808821="00011000";
+var ftTimestamp_7808821="1722998375";
+var ftGeoC2_7808821="us";
+var ftGeoState_7808821="il";
+var ftGeoCity_7808821="chicago";
+var ftISP_7808821="webpass inc.";
+var ftSpeed_7808821="broadband";
+var ftConnType_7808821="wifi";
+var ftDMA_7808821="602";
+var ftLong_7808821="-87.65";
+var ftLat_7808821="41.88";
+var ftPostal_7808821="60607";
+var ftTimeZone_7808821="-500";
+var ftMobileCarrier_7808821="";
+var ftImp7808821 = {};
+ftImp7808821.privacy = "x";
+ftImp7808821.guidAge = "33";
+ftImp7808821.impID = "5D8521EC-5998-63BB-1D23-FC637D843070";
+ftImp7808821.duid = "FT:6030B1B774DB92";
+
+ftImp7808821.ft_tpplid = "";
+ftImp7808821.ft_c = {};
+ftImp7808821.ft_c.ft_c1 = "394031429";
+ftImp7808821.gdpr = "0";
+ftImp7808821.gdpr_consent = "";
+ftImp7808821.gdpr_pd = "";
+ftImp7808821.oob_consent = "";
+ftImp7808821.gdprStoredConsent = "";
+ftImp7808821.us_privacy = "!!US_PRIVACY!";
+ftImp7808821.gpc = "0";
+
+ftImp7808821.jsAppend = "1";
+var ftCreativeId_7808821 = "4698653";
+(function(){var tag=document.getElementById("ft_servedby_7808821")||function(s){return s[s.length-1]}(document.getElementsByTagName("script")),js=document.createElement("script");js.src="https://ajs-assets.ftstatic.com/ftUtils.js";js.id="ftscript_m7808821";js.setAttribute("name","ftscript_m7808821");tag.parentNode.insertBefore(js,tag)})();window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("7808821");
+

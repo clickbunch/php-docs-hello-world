@@ -1,0 +1,262 @@
+@font-face {
+    font-family : 'XfinityBrownWeb-Bold';
+    src         : url("https://cdn.flashtalking.com/93411/fonts/d4b3e162de98cb3f43636cde35fcc00e89f83fdf.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/93411/fonts/1ccbf188da2dd4565c47b990c13da23365f1251e.woff") format("woff");
+    font-weight : 700;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'XFINITYStandardTT';
+    src         : url("https://cdn.flashtalking.com/93411/fonts/6c42a98cfc6fa0c435b36f2a42509d71ccef627c.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/93411/fonts/9c8b95b41012f79de6dff19b5722e4ceba3b98b9.woff") format("woff"),
+    url("https://cdn.flashtalking.com/93411/fonts/4b519c62d8912d01963a2179b2262b7fd093a8c0.ttf") format("truetype");
+    font-weight : 400;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'XFINITYStandardTT-Bold';
+    src         : url("https://cdn.flashtalking.com/93411/fonts/bf2f2b3424a5148dfa724c2fdfb63d7f5d3b61c4.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/93411/fonts/e47e07c11abfd771eb540bb9e07e9fec9e119c72.woff") format("woff"),
+    url("https://cdn.flashtalking.com/93411/fonts/ed356a21dc6474b5ae9b308808995af6ea4551f7.ttf") format("truetype");
+    font-weight : 700;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'XfinityBrownWeb Light Web';
+    src         : url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-Light.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-Light.woff") format("woff"),
+    url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-Light.ttf") format("truetype");
+    font-weight : 700;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'XfinityBrownWeb Regular Web';
+    src         : url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-Regular.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-Regular.woff") format("woff"),
+    url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-Regular.ttf") format("truetype");
+    font-weight : 100;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'XfinityBrownWeb-BoldItalic';
+    src         : url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-BoldItalic.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-BoldItalic.woff") format("woff"),
+    url("https://cdn.flashtalking.com/93411/fonts/XfinityBrownWeb-BoldItalic.ttf") format("truetype");
+    font-weight : 700;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'NOWTVText_W_Lt';
+    src         : url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/WOFF2/NOWTVText_W_Lt.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/WOFF/NOWTVText_W_Lt.woff") format("woff"),
+    url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/TTF/NOWTVText_W_Lt.ttf") format("truetype");
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'NOWTVText_W_Rg';
+    src         : url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/WOFF2/NOWTVText_W_Rg.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/WOFF/NOWTVText_W_Rg.woff") format("woff"),
+    url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/TTF/NOWTVText_W_Rg.ttf") format("truetype");
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'NOWTVText_W_Bd';
+    src         : url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/WOFF2/NOWTVText_W_Bd.woff2") format("woff2"),
+    url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/WOFF/NOWTVText_W_Bd.woff") format("woff"),
+    url("https://cdn.flashtalking.com/181602/NOWTVText_fonts/TTF/NOWTVText_W_Bd.ttf") format("truetype");
+    font-style  : normal;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+*, :before, :after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.abs-pos, #wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 600px;
+  overflow: hidden; }
+
+#wrapper {
+  background-color:#fff;
+  color:#fff;
+  position: relative;
+  visibility: hidden;
+  font-family: 'XfinityBrownWeb Regular Web';
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: none;
+  -webkit-font-smoothing: antialiased;
+  border: 1px solid #000000; }
+
+#wrapper.show {
+    visibility: visible; 
+}
+
+
+.cta_container{
+    height:auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin:auto;
+
+
+}
+
+.cta{
+    position: static !important;
+    /*display: inline-block;*/
+    background: #ffffff;
+    border-radius: 7px;
+    font-family: 'XfinityBrownWeb Regular Web';
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    padding: 14px 0px;
+    margin: auto;
+    letter-spacing: 0px;
+    text-align:center;
+    height:42px;
+    width:134px;
+    color:#002C2B;
+}
+
+#f1_copy, #f2_copy, #f3_copy, #ef_copy , #ef_sub_copy {
+  width:300px;
+  height:600px;
+  font-size:21px;
+  line-height:24px;
+  letter-spacing:-.5px;
+  font-weight: 200;
+  font-family : 'XfinityBrownWeb Light Web';
+}
+
+#bg, #logo, #signal {
+  width:300px;
+  height:600px;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+#legal {
+  font-size:9px;
+  font-family : 'XFINITYStandardTT';
+  line-height:11px;
+  letter-spacing:-.3px;
+  color:#ECECF3;
+}
+
+/*css for offer*/
+
+#offer {
+  font-family : 'XfinityBrownWeb Light Web';
+  width:300px;
+  height:600px;
+  color:#ffffff;
+}
+
+#offer_title {
+  font-size:14px;
+}
+
+#offer_dollarSign {
+  font-size:28px;
+  font-weight: 200;
+  font-family : 'XfinityBrownWeb Light Web';
+}
+
+#offer_price {
+  font-size:56px;
+  letter-spacing:-1px;
+}
+
+#offer_cents {
+  font-size:20px;
+  letter-spacing:-1px;
+}
+
+#offer_terms {
+  font-size:21px;
+  line-height:23px;
+  letter-spacing:-.1px;
+}
+
+#offer_agree {
+  font-family:'XfinityBrownWeb Regular Web';
+  font-size:10px;
+  line-height:12px;
+  letter-spacing:-.1px;
+}
+
+#offer_blurb {
+  font-family : 'XfinityBrownWeb-Regular';
+  font-size:14px;
+  line-height:16px;
+}
+
+#offer_sideBar {
+  width:0px;
+  height:0px;
+  background-color:#c6001d;
+  top:57px;
+  left:15px;
+}
